@@ -5,7 +5,7 @@
     public override void OnEnter()
     {
         base.OnEnter();
-        App.Ins.UIMgr.ShowUI<UIStart>();
+        App.Ins.UIMgr.ShowUI<UISetting>();
     }
 
     public override void OnUpdate()
@@ -15,7 +15,7 @@
 
     public override void OnExit()
     {
-        App.Ins.UIMgr.HideUI<UIStart>();
+        App.Ins.UIMgr.HideUI<UISetting>();
         base.OnExit();
     }
 }
