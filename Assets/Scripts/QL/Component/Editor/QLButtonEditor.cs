@@ -11,6 +11,8 @@ public class QLButtonEditor : Editor
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
+                RectTransform rt;
+
                 GameObject go = new GameObject("QLButton", typeof(QLImage));
                 go.layer = LayerMask.NameToLayer("UI");
                 QLButton button = go.AddComponent<QLButton>();
@@ -29,6 +31,12 @@ public class QLButtonEditor : Editor
                 button.targetGraphic = raycastBox;
 
                 raycastBox.transform.SetParent(trans, false);
+                rt = raycastBox.transform as RectTransform;
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.localPosition = Vector3.zero;
+                rt.sizeDelta = Vector2.zero;
+                rt.localScale = Vector3.one;
             }
         }
     }
@@ -63,14 +71,21 @@ public class QLButtonEditor : Editor
         {
             if (button.Text == null)
             {
+                RectTransform rt;
+
                 GameObject go = new GameObject("Text", typeof(QLText));
                 QLText text = go.GetComponent<QLText>();
                 text.raycastTarget = false;
                 text.color = Color.black;
                 text.alignment = TextAnchor.MiddleCenter;
                 text.transform.SetParent(button.transform, false);
-                text.transform.localPosition = Vector3.zero;
-                text.transform.localScale = Vector3.one;
+
+                rt = text.transform as RectTransform;
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.localPosition = Vector3.zero;
+                rt.sizeDelta = Vector2.zero;
+                rt.localScale = Vector3.one;
                 go.layer = LayerMask.NameToLayer("UI");
                 button.Text = text;
             }

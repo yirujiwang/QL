@@ -1,8 +1,10 @@
-﻿public partial class UISetting : UIBase
+﻿using UnityEngine;
+
+public partial class UISetting : UIBase
 {
-    private int m_fullScreen;
-    private int m_music;
-    private float m_volume;
+    private bool m_fullScreen = false;
+    private bool m_music = true;
+    private float m_volume = 0.5f;
 
     public override void OnShow()
     {
@@ -10,17 +12,12 @@
 
     protected override void OnInit()
     {
-        m_fullScreen = StorageManager.Ins.FullScreen;
-        m_music = StorageManager.Ins.Music;
-        m_volume = StorageManager.Ins.Volume;
-
-        m_musicTxt.text = m_music == 1 ? "开" : "关";
+        m_musicTxt.text = m_music ? "开" : "关";
 
         m_volumeSld.maxValue = 1;
         m_volumeSld.minValue = 0;
         m_volumeSld.value = m_volume;
 
-        m_windowBtn.onClick.AddListener(OnWindowClicked);
         m_screenBtn.onClick.AddListener(OnScreenClicked);
         m_volumeSld.onValueChanged.AddListener(OnVolumeChanged);
         m_musicBtn.onClick.AddListener(OnMusicClicked);
@@ -35,15 +32,12 @@
 
     private void OnConfirmClicked()
     {
-        StorageManager.Ins.FullScreen = m_fullScreen;
-        StorageManager.Ins.Volume = m_volume;
-        StorageManager.Ins.Music = m_music;
     }
 
     private void OnMusicClicked()
     {
-        m_music = m_music == 1 ? 0 : 1;
-        m_musicTxt.text = m_music == 1 ? "开" : "关";
+        m_music = !m_music;
+        m_musicTxt.text = m_music ? "开" : "关";
     }
 
     private void OnVolumeChanged(float val)
@@ -54,11 +48,20 @@
 
     private void OnScreenClicked()
     {
-        m_fullScreen = 1;
+        m_fullScreen = !m_fullScreen;
     }
 
-    private void OnWindowClicked()
+#if UNITY_WEBGL
+    //WebGl平台设置全屏/窗口切换
+    [System.Runtime.InteropServices.DllImport("__Internal")]
+    public static extern void SetFullScreen(int code);
+#endif
+
+#if UNITY_STANDALONE_WIN
+    public static void SetFullScreen(int code)
     {
-        m_fullScreen = 0;
+        Screen.fullScreen = code == 1;
     }
+
+#endif
 }
