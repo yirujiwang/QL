@@ -7,6 +7,7 @@ public abstract class UIBase : MonoBehaviour
     private void Start()
     {
         OnInit();
+        OnShow();
     }
 
     protected abstract void OnInit();

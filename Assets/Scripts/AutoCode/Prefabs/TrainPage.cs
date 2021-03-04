@@ -5,5 +5,6 @@ using UnityEngine.UI;
 
 public partial class TrainPage
 {
+    [SerializeField] private Text m_trainInfoTxt;
     [SerializeField] private Button m_startBtn;
 }

@@ -5,14 +5,8 @@ using UnityEngine.UI;
 
 public partial class UIMain
 {
-    [SerializeField] private Text m_titleTxt;
-    [SerializeField] private Button m_settingBtn;
-    [SerializeField] private Button m_trainBtn;
-    [SerializeField] private Button m_componentsBtn;
-    [SerializeField] private Button m_introduceBtn;
-    [SerializeField] private Image m_introduceImg;
-    [SerializeField] private Text m_introduceTxt;
-    [SerializeField] private ScrollRect m_componentsScr;
-    [SerializeField] private Button m_photoBtn;
-    [SerializeField] private Button m_startBtn;
+    [SerializeField] private MainHeader m_header;
+    [SerializeField] private IntroducePage m_introduce;
+    [SerializeField] private ComponentsPage m_components;
+    [SerializeField] private TrainPage m_train;
 }

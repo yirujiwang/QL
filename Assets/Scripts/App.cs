@@ -5,41 +5,41 @@ public class App
 {
     private static App m_app = null;
     private Launcher m_launcher = null;
-    private SceneManager m_sceneMgr = null;
-    private UIManager m_uiMgr = null;
-    private ResourceManager m_resMgr = null;
+    private SceneManager m_sceneManager = null;
+    private UIManager m_uiMnanger = null;
+    private ResourceManager m_resourceManager = null;
 
-    public static App Ins { get => m_app; set => m_app = value; }
+    public static App Instance { get => m_app; set => m_app = value; }
     public Launcher Launcher{ get => m_launcher; private set => m_launcher = value; }
-    public SceneManager SceneMgr { get => m_sceneMgr; set => m_sceneMgr = value; }
-    public UIManager UIMgr { get => m_uiMgr; set => m_uiMgr = value; }
-    public ResourceManager ResMgr { get => m_resMgr; set => m_resMgr = value; }
+    public SceneManager SceneManager { get => m_sceneManager; set => m_sceneManager = value; }
+    public UIManager UIManager { get => m_uiMnanger; set => m_uiMnanger = value; }
+    public ResourceManager ResourceManager { get => m_resourceManager; set => m_resourceManager = value; }
 
     public App(Launcher launcher)
     {
-        Ins = this;
+        Instance = this;
         Launcher = launcher;
     }
 
     public IEnumerator Init()
     {
-        ResMgr = new ResourceManager();
-        UIMgr = new UIManager();
-        SceneMgr = new SceneManager();
+        ResourceManager = new ResourceManager();
+        UIManager = new UIManager();
+        SceneManager = new SceneManager();
 
-        yield return ConfigModule.Ins.LoadDebugInfo();
+        yield return ConfigModule.Instance.LoadDebugInfo();
 
         //初始化UI根节点
-        UIMgr.InitRoot();
+        UIManager.InitRoot();
 
         //初始场景
-        SceneMgr.ShowScene(new StartScene(), "");
+        SceneManager.ShowScene(new StartScene(), "");
 
         yield return null;
     }
 
     public void Update()
     {
-        SceneMgr.UpdateScene();
+        SceneManager.UpdateScene();
     }
 }

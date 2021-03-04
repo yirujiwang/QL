@@ -5,12 +5,8 @@ using UnityEngine.UI;
 
 public partial class UISetting
 {
-    [SerializeField] private Button m_windowBtn;
-    [SerializeField] private Button m_screenBtn;
-    [SerializeField] private Slider m_volumeSld;
-    [SerializeField] private Text m_volumeTxt;
-    [SerializeField] private Button m_musicBtn;
-    [SerializeField] private Text m_musicTxt;
-    [SerializeField] private Button m_confirmBtn;
+    [SerializeField] private Button m_closeBtn;
+    [SerializeField] private Text m_titleTxt;
     [SerializeField] private Button m_cancelBtn;
+    [SerializeField] private Button m_confirmBtn;
 }

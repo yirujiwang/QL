@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public partial class MainHeader
 {
     [SerializeField] private Text m_titleTxt;
-    [SerializeField] private Button m_settingBtn;
-    [SerializeField] private Button m_trainBtn;
-    [SerializeField] private Button m_componentsBtn;
     [SerializeField] private Button m_introduceBtn;
+    [SerializeField] private Button m_componentsBtn;
+    [SerializeField] private Button m_trainBtn;
+    [SerializeField] private Button m_settingBtn;
 }

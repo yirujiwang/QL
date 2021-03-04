@@ -14,7 +14,7 @@ public class UIManager
         if (m_root == null)
         {
             string prefabName = "UIRoot";
-            GameObject asset = App.Ins.ResMgr.LoadAsset<GameObject>(AssetType.Prefab, prefabName);
+            GameObject asset = App.Instance.ResourceManager.LoadAsset<GameObject>(AssetType.Prefab, prefabName);
             GameObject go = GameObject.Instantiate(asset);
             m_root = go.GetComponent<UIRoot>();
             go.name = prefabName;
@@ -29,7 +29,7 @@ public class UIManager
 
         if (uiBase == null)
         {
-            GameObject asset = App.Ins.ResMgr.LoadAsset<GameObject>(AssetType.UI, uiName);
+            GameObject asset = App.Instance.ResourceManager.LoadAsset<GameObject>(AssetType.UI, uiName);
             GameObject go = GameObject.Instantiate(asset, m_root.NormalRoot);
             uiBase = go.GetComponent<T>();
             go.name = uiName;

@@ -14,9 +14,9 @@ public class Launcher : MonoBehaviour
 
     private void Update()
     {
-        if (App.Ins != null)
+        if (App.Instance != null)
         {
-            App.Ins.Update();
+            App.Instance.Update();
         }
     }
 }

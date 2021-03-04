@@ -3,17 +3,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QLButtonExtension
+public class QLButtonEditor : Editor
 {
-    [MenuItem("GameObject/UI/QL/Button")]
+    [MenuItem("GameObject/UI/Button", false, 3)]
     private static void CreateButton()
     {
         if (Selection.activeTransform)
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
-                RectTransform rt;
-
                 GameObject go = new GameObject("Button", typeof(Image));
                 go.layer = LayerMask.NameToLayer("UI");
                 Button button = go.AddComponent<Button>();
@@ -24,19 +22,18 @@ public class QLButtonExtension
                 trans.localScale = Vector3.one;
 
                 Image image = go.GetComponent<Image>();
-                image.raycastTarget = false;
+                image.raycastTarget = true;
 
-                AttachComponent<QLRaycastBox>(trans, (c) => { button.targetGraphic = c; });
                 AttachComponent<Text>(trans).raycastTarget = false;
             }
         }
     }
 
-    private static T AttachComponent<T>(Transform parent, Action<T> onEnd = null) where T : Component
+    public static T AttachComponent<T>(Transform parent, string layer = "UI", Action<T> onEnd = null) where T : Component
     {
         GameObject go = new GameObject(typeof(T).Name, typeof(T));
         T t = go.GetComponent<T>();
-        go.layer = LayerMask.NameToLayer("UI");
+        go.layer = LayerMask.NameToLayer(layer);
 
         t.transform.SetParent(parent, false);
         RectTransform rt = t.transform as RectTransform;
