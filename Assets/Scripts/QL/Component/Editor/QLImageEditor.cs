@@ -36,7 +36,7 @@ public class QLImageEditor : Editor
                 go.layer = LayerMask.NameToLayer("UI");
                 Image image = go.GetComponent<Image>();
 
-                image.raycastTarget = false;
+                image.raycastTarget = true;
 
                 image.color = new Color(0f, 0f, 0f, 0.7f);
 
