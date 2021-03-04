@@ -1,21 +1,21 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-
-[CustomEditor(typeof(QLRawImage)), CanEditMultipleObjects]
-public class QLRawImageEditor : Editor
+public class QLRaycastBoxExtension
 {
-    [MenuItem("GameObject/UI/QL/Raw Image")]
-    private static void CreateRawImage()
+    [MenuItem("GameObject/UI/QL/RaycastBox")]
+    private static void CreateRaycastBox()
     {
         if (Selection.activeTransform)
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
-                GameObject go = new GameObject("QLRawImage", typeof(QLRawImage));
+                GameObject go = new GameObject("RaycastBox", typeof(QLRaycastBox));
                 go.layer = LayerMask.NameToLayer("UI");
-                QLRawImage rawImage = go.GetComponent<QLRawImage>();
-                rawImage.raycastTarget = false;
+                QLRaycastBox rb = go.GetComponent<QLRaycastBox>();
+
+                rb.raycastTarget = true;
 
                 Transform trans = go.transform;
                 trans.SetParent(Selection.activeTransform);

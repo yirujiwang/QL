@@ -1,8 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CustomEditor(typeof(QLImage)), CanEditMultipleObjects]
-public class QLImageEditor : Editor
+public class QLImageExtension
 {
     [MenuItem("GameObject/UI/QL/Image")]
     private static void CreateImage()
@@ -11,13 +11,10 @@ public class QLImageEditor : Editor
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
-                GameObject go = new GameObject("QLImage", typeof(QLImage));
+                GameObject go = new GameObject("Image", typeof(Image));
                 go.layer = LayerMask.NameToLayer("UI");
-                QLImage image = go.GetComponent<QLImage>();
-                if (image == null)
-                {
-                    image = go.AddComponent<QLImage>();
-                }
+                Image image = go.GetComponent<Image>();
+
                 image.raycastTarget = false;
 
                 Transform trans = go.transform;
@@ -35,9 +32,10 @@ public class QLImageEditor : Editor
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
-                GameObject go = new GameObject("QLPanel", typeof(QLImage));
+                GameObject go = new GameObject("Panel", typeof(Image));
                 go.layer = LayerMask.NameToLayer("UI");
-                QLImage image = go.GetComponent<QLImage>();
+                Image image = go.GetComponent<Image>();
+
                 image.raycastTarget = false;
 
                 image.color = new Color(0f, 0f, 0f, 0.7f);

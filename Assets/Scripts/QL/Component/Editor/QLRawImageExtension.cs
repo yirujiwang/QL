@@ -1,21 +1,21 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-
-[CustomEditor(typeof(QLText)), CanEditMultipleObjects]
-public class QLTextEditor : Editor
+public class QLRawImageExtension
 {
-    [MenuItem("GameObject/UI/QL/Text")]
-    private static void CreateText()
+    [MenuItem("GameObject/UI/QL/Raw Image")]
+    private static void CreateRawImage()
     {
         if (Selection.activeTransform)
         {
             if (Selection.activeTransform.GetComponentInParent<Canvas>())
             {
-                GameObject go = new GameObject("QLText", typeof(QLText));
+                GameObject go = new GameObject("RawImage", typeof(RawImage));
                 go.layer = LayerMask.NameToLayer("UI");
-                QLText text = go.GetComponent<QLText>();
-                text.raycastTarget = false;
+                RawImage rawImage = go.GetComponent<RawImage>();
+
+                rawImage.raycastTarget = false;
 
                 Transform trans = go.transform;
                 trans.SetParent(Selection.activeTransform);
